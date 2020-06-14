@@ -14,10 +14,10 @@ data class Weather(
     val cityName: String,
 //
 //    @DatabaseField
-    val temperature: Int,
+    val temperature: String,
 //
 //    @DatabaseField
-    val humidity: Int,
+    val humidity: String,
 //
 //    @DatabaseField
     val icon: String

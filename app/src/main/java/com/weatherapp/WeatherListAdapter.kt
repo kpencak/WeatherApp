@@ -11,6 +11,7 @@ class WeatherListAdapter (private val mWeatherList: ArrayList<Weather>) : Recycl
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val cityNameTextView = itemView.findViewById<TextView>(R.id.city)
         val tempTextView = itemView.findViewById<TextView>(R.id.temperature)
+        val iconTextView = itemView.findViewById<TextView>(R.id.icon)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,6 +29,9 @@ class WeatherListAdapter (private val mWeatherList: ArrayList<Weather>) : Recycl
         cityTextView.text= weather.cityName
 
         val temperatureTextView = holder.tempTextView
-        temperatureTextView.text = weather.temperature.toString()
+        temperatureTextView.text = weather.temperature
+
+        val icTextView = holder.iconTextView
+        icTextView.text = weather.icon
     }
 }

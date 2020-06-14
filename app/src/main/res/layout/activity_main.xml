@@ -72,4 +72,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"/>
 
+    <FrameLayout
+            android:id="@+id/flFragment2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

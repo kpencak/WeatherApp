@@ -1,7 +1,6 @@
 package com.weatherapp
 
 import android.content.res.Configuration
-import android.media.Image
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
