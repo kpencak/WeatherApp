@@ -15,9 +15,11 @@ class MainActivity : AppCompatActivity() {
         val weatherFragment = WeatherFragment()
         val weatherListFragment = WeatherListFragment()
 
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment, weatherFragment)
-            commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().apply {
+                replace(R.id.flFragment, weatherFragment)
+                commit()
+            }
         }
 
         val loadListImage = findViewById<ImageView>(R.id.load)
