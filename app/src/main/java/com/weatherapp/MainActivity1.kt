@@ -2,7 +2,7 @@ package com.weatherapp
 
 import android.graphics.Typeface
 import android.os.Bundle
-import android.widget.ImageView
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.weatherapp.API.WeatherService
@@ -12,36 +12,18 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private var weatherData: TextView? = null
-
-
 class MainActivity : AppCompatActivity() {
-
+    private var weatherData: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         weatherData = findViewById(R.id.textView)
         val typeface = Typeface.createFromAsset(assets, "Lato-Bold.ttf")
-
-        val weatherFragment = WeatherFragment()
-        val weatherListFragment = WeatherListFragment()
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flFragment, weatherFragment)
-            commit()
-        }
-
-        val loadListImage = findViewById<ImageView>(R.id.load)
-
-        loadListImage.setOnClickListener {
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.flFragment, weatherListFragment)
-                addToBackStack(null)
-                commit()
-                currentData
-            }
-        }
+        val fontUtils = FontUtils()
+        fontUtils.applyFontToView(weatherData, typeface)
+        findViewById<View>(R.id.button).setOnClickListener { currentData }
     }
+
     val currentData: Unit
         get() {
             val retrofit: Retrofit = Retrofit.Builder()
