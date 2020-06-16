@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        weatherData = findViewById(R.id.textView)
+        weatherData = findViewById(R.id.city)
         val typeface = Typeface.createFromAsset(assets, "Lato-Bold.ttf")
 
         val weatherFragment = WeatherFragment()
