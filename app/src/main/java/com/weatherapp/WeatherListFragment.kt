@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.weatherapp.R.attr.layoutManager
 import kotlinx.android.synthetic.main.fragment_list.*
 
 
@@ -16,11 +15,7 @@ import kotlinx.android.synthetic.main.fragment_list.*
  *
  */
 class WeatherListFragment : Fragment(R.layout.fragment_list) {
-    private val mWeatherList = arrayListOf<Weather>(
-        Weather(null, "New York", 10, 50, "a"),
-        Weather(null, "Cracow", 15, 51, "b"),
-        Weather(null, "London", 20, 52, "c")
-    )
+    private val mWeatherList = arrayListOf<WeatherResponse>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
