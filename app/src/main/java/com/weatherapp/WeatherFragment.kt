@@ -30,10 +30,16 @@ import java.lang.Exception
  */
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
     lateinit var weatherResponse: WeatherResponse
+
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        retainInstance = true
+//    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = LayoutInflater.from(container?.context).inflate(R.layout.fragment_weather, container, false)
 
-
+        retainInstance = true
         var editText = view?.findViewById<TextView>(R.id.city)
 
         editText?.addTextChangedListener(
@@ -52,7 +58,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                                 temperature.text = weatherResponse.main?.temp.toString() + "° C"
                                 humidity.text = weatherResponse.main?.humidity.toString() + "%"
                                 icon.text = weatherResponse.weather[0].icon?.let { iconNameToChar(it) }
-
                             }
                         }
 

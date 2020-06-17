@@ -13,12 +13,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="Current Location"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="30sp"
             android:fontFamily="@font/weather"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
             android:id="@+id/temperature"
@@ -28,7 +28,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="80dp"
             android:fontFamily="@font/weather"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/city"
@@ -42,7 +42,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/weather"
             android:layout_marginRight="16dp"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/city"
@@ -58,7 +58,7 @@
             android:layout_marginLeft="8dp"
             android:fontFamily="@font/weather"
             android:gravity="center"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="200sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
