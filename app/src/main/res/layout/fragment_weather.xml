@@ -32,7 +32,8 @@
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/city"
-            tools:text="8° C"/>
+            tools:text="8° C"
+            android:freezesText="true"/>
 
     <TextView
             android:id="@+id/humidity"

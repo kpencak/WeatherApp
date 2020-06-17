@@ -12,9 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.squareup.picasso.Picasso
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.weatherapp.API.ServiceBuilder
 import com.weatherapp.API.WeatherService
+import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,14 +32,36 @@ import java.lang.Exception
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
     lateinit var weatherResponse: WeatherResponse
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        retainInstance = true
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("Temperature", temperature.text.toString())
+        outState.putString("Humidity", humidity.text.toString())
+        outState.putString("Icon", icon.text.toString())
+    }
+//
+//    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+//        super.onViewStateRestored(savedInstanceState)
+//        temperature.text = savedInstanceState?.getString("Temperature")
+//        humidity.text = savedInstanceState?.getString("Humidity")
+//        icon.text = savedInstanceState?.getString("Icon")
 //    }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = LayoutInflater.from(container?.context).inflate(R.layout.fragment_weather, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
 
+
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val root = inflater.inflate(R.layout.fragment_weather, container, false)
+
+        return root
+    }
+
+    override fun onStart() {
+        super.onStart()
         retainInstance = true
         var editText = view?.findViewById<TextView>(R.id.city)
 
@@ -77,8 +100,13 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
                 }
             })
 
-            return view
-        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
 
     companion object {
         var BaseUrl = "https://api.openweathermap.org/"
