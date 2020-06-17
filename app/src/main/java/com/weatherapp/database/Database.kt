@@ -10,7 +10,7 @@ class Database(context: Context?) : SQLiteAssetHelper(
     DATABASE_VERSION
 ) {
     companion object {
-        private const val DATABASE_NAMES = "sqlitedata"
+        private const val DATABASE_NAMES = "weather.db"
         private const val DATABASE_VERSION = 3
     }
 }
