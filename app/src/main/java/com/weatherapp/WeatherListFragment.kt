@@ -16,11 +16,7 @@ import kotlinx.android.synthetic.main.fragment_list.*
  *
  */
 class WeatherListFragment : Fragment(R.layout.fragment_list) {
-    private val mWeatherList = arrayListOf<Weather>(
-        Weather(null, "New York", "10° C", "50%", "a"),
-        Weather(null, "Cracow", "15° C", "51%", "b"),
-        Weather(null, "London", "20° C", "52%", "c")
-    )
+    private val mWeatherList = arrayListOf<WeatherResponse>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
