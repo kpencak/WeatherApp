@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.weatherapp.database.DatabaseQuery
+import com.weatherapp.database.WeatherObject
+import com.weatherapp.database.WeatherOpenHelper
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,8 +48,11 @@ class MainActivity : AppCompatActivity() {
         val saveItemImage = findViewById<ImageView>(R.id.save)
 
         saveItemImage.setOnClickListener {
+            val dbHandler = WeatherOpenHelper(this, null)
+
             val fragment = supportFragmentManager.findFragmentById(R.id.flFragment)
             val fragmentView = fragment?.view
+
             val cityNameText = fragmentView?.findViewById<EditText>(R.id.city)
             val cityName = cityNameText?.text.toString()
 
@@ -56,7 +61,10 @@ class MainActivity : AppCompatActivity() {
 
             val tempTextView = fragmentView?.findViewById<TextView>(R.id.temperature)
             val temp = tempTextView?.text.toString()
-            DatabaseQuery(applicationContext).insertNewWeatherItem(cityName, icon, temp)
+
+            val weatherObject = WeatherObject(cityName, icon, temp)
+            dbHandler.addWeather(weatherObject)
+            Toast.makeText(this, "Added to database", Toast.LENGTH_LONG).show()
         }
     }
 
