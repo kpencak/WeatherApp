@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.weatherapp.database.WeatherObject
 
-class WeatherListAdapter (private val mWeatherList: ArrayList<WeatherResponse>) : RecyclerView.Adapter<WeatherListAdapter.ViewHolder> () {
+class WeatherListAdapter (private val allWeatherData: ArrayList<WeatherObject>) : RecyclerView.Adapter<WeatherListAdapter.ViewHolder> () {
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val cityNameTextView = itemView.findViewById<TextView>(R.id.city)
         val tempTextView = itemView.findViewById<TextView>(R.id.temperature)
-        val humTextView = itemView.findViewById<TextView>(R.id.humidity)
         val icTextView = itemView.findViewById<TextView>(R.id.icon)
     }
 
@@ -21,23 +21,19 @@ class WeatherListAdapter (private val mWeatherList: ArrayList<WeatherResponse>) 
     }
 
     override fun getItemCount(): Int {
-//        return mWeatherList.size
-        return 0
+        return allWeatherData.size
     }
 
     override fun onBindViewHolder(holder: WeatherListAdapter.ViewHolder, position: Int) {
-        val weatherObject: WeatherResponse = mWeatherList[position]
+        val weatherObject: WeatherObject = allWeatherData[position]
 
         val cityTextView = holder.cityNameTextView
         cityTextView.text= weatherObject.name
 
         val temperatureTextView = holder.tempTextView
-        temperatureTextView.text = weatherObject.main?.temp.toString()
-
-        val humidityTextView = holder.humTextView
-        humidityTextView.text = weatherObject.main?.humidity.toString()
+        temperatureTextView.text = weatherObject.temp.toString()
 
         val iconTextView = holder.icTextView
-        iconTextView.text = weatherObject.weather[0].icon
+        iconTextView.text = weatherObject.icon
     }
 }

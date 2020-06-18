@@ -1,6 +1,0 @@
-CREATE TABLE weather (
-    id int NOT NULL,
-    name varchar (255),
-    temp varchar (255),
-    PRIMARY KEY (id)
-);

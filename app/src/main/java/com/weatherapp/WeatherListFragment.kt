@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.weatherapp.R.attr.layoutManager
+import com.weatherapp.database.WeatherObject
+import com.weatherapp.database.WeatherOpenHelper
 import kotlinx.android.synthetic.main.fragment_list.*
 
 
@@ -16,11 +18,13 @@ import kotlinx.android.synthetic.main.fragment_list.*
  *
  */
 class WeatherListFragment : Fragment(R.layout.fragment_list) {
-    private val mWeatherList = arrayListOf<WeatherResponse>()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
+
     }
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -32,6 +36,10 @@ class WeatherListFragment : Fragment(R.layout.fragment_list) {
     // populate the views now that the layout has been inflated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val dbHandler = WeatherOpenHelper(activity, null)
+        val mWeatherList = dbHandler.allWeatherData
+
         recycleViewList.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = WeatherListAdapter(mWeatherList)
