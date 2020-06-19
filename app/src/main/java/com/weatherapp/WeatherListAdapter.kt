@@ -1,5 +1,7 @@
 package com.weatherapp
 
+import android.content.Context
+import android.database.Cursor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,8 +9,10 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.weatherapp.database.WeatherObject
+import com.weatherapp.database.WeatherOpenHelper
 
-class WeatherListAdapter (private val allWeatherData: ArrayList<WeatherObject>) : RecyclerView.Adapter<WeatherListAdapter.ViewHolder> () {
+class WeatherListAdapter(private val context: Context, private var cursor: Cursor): RecyclerView.Adapter<WeatherListAdapter.ViewHolder> () {
+
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
         val cityNameTextView = itemView.findViewById<TextView>(R.id.city)
         val tempTextView = itemView.findViewById<TextView>(R.id.temperature)
@@ -21,19 +25,35 @@ class WeatherListAdapter (private val allWeatherData: ArrayList<WeatherObject>) 
     }
 
     override fun getItemCount(): Int {
-        return allWeatherData.size
+        return cursor.count
     }
 
-    override fun onBindViewHolder(holder: WeatherListAdapter.ViewHolder, position: Int) {
-        val weatherObject: WeatherObject = allWeatherData[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if (cursor.moveToPosition(position)) {
+        }
+            val name = cursor.getString(cursor.getColumnIndexOrThrow(WeatherOpenHelper.COLUMN_CITY))
+            val temp = cursor.getString(cursor.getColumnIndexOrThrow(WeatherOpenHelper.COLUMN_TEMP))
+            val icon = cursor.getString(cursor.getColumnIndexOrThrow(WeatherOpenHelper.COLUMN_ICON))
 
-        val cityTextView = holder.cityNameTextView
-        cityTextView.text= weatherObject.name
+//                Log.e("DEBUG", id.toString())
+//                Log.e("DEBUG", name)
+//                Log.e("DEBUG", temp)
+//                Log.e("DEBUG", icon)
 
-        val temperatureTextView = holder.tempTextView
-        temperatureTextView.text = weatherObject.temp.toString()
+        holder.cityNameTextView.text = name
+        holder.tempTextView.text = temp
+        holder.icTextView.text = icon
+    }
 
-        val iconTextView = holder.icTextView
-        iconTextView.text = weatherObject.icon
+    fun swapCursor(newCursor : Cursor) {
+        if (cursor != null) {
+            cursor.close()
+        }
+
+        cursor = newCursor
+
+        if (newCursor != null) {
+            notifyDataSetChanged()
+        }
     }
 }

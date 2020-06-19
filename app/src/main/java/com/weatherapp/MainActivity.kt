@@ -7,8 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.weatherapp.database.WeatherObject
 import com.weatherapp.database.WeatherOpenHelper
+import kotlinx.android.synthetic.main.fragment_list.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -65,6 +67,14 @@ class MainActivity : AppCompatActivity() {
             val weatherObject = WeatherObject(cityName, icon, temp)
             dbHandler.addWeather(weatherObject)
             Toast.makeText(this, "Added to database", Toast.LENGTH_LONG).show()
+
+            val fragment2 = supportFragmentManager.findFragmentById(R.id.flFragment2)
+//            if (fragment2 != null && fragment2.isAdded){
+//                fragment2.recycleViewList.layoutManager = LinearLayoutManager(this@MainActivity)
+//                var position = fragment2.recycleViewList.adapter!!.itemCount
+//                fragment2.recycleViewList.adapter?.notifyItemChanged(position)
+//            }
+            fragment2?.onResume()
         }
     }
 

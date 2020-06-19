@@ -2,9 +2,12 @@ package com.weatherapp.database
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import android.widget.Toast
+import com.weatherapp.WeatherListAdapter
 
 class WeatherOpenHelper (context: Context?, factory: SQLiteDatabase.CursorFactory?) :
         SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
@@ -34,25 +37,6 @@ class WeatherOpenHelper (context: Context?, factory: SQLiteDatabase.CursorFactor
         val db = this.writableDatabase
         db.insert(TABLE_NAME, null, values)
         db.close()
-    }
-
-    val allWeatherData: ArrayList<WeatherObject> get() {
-        val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME", null)
-
-        if(cursor.moveToFirst()) {
-            do {
-                val id = cursor.getInt(0)
-                val name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CITY))
-                val temp = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TEMP))
-                val icon = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ICON))
-
-                allWeatherData.add(WeatherObject(id, name, icon, temp))
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        db.close()
-        return this.allWeatherData
     }
 
     fun deleteWeather(cityName: String) {
