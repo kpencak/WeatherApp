@@ -1,7 +1,6 @@
 package com.weatherapp
 
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,18 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.weatherapp.API.ServiceBuilder
-import com.weatherapp.API.WeatherService
-import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.Exception
 
 
 /**
@@ -54,11 +46,8 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_weather, container, false)
-
-        return root
-    }
+                              savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.fragment_weather, container, false)
 
     override fun onStart() {
         super.onStart()
