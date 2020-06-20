@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.weatherapp.API.ServiceBuilder
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,23 +25,10 @@ import retrofit2.Response
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
     lateinit var weatherResponse: WeatherResponse
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putString("Temperature", temperature.text.toString())
-        outState.putString("Humidity", humidity.text.toString())
-        outState.putString("Icon", icon.text.toString())
-    }
-//
-//    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-//        super.onViewStateRestored(savedInstanceState)
-//        temperature.text = savedInstanceState?.getString("Temperature")
-//        humidity.text = savedInstanceState?.getString("Humidity")
-//        icon.text = savedInstanceState?.getString("Icon")
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
+
     }
 
 
@@ -91,14 +79,6 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
     companion object {
         var BaseUrl = "https://api.openweathermap.org/"
         var AppId = "2e65127e909e178d0af311a81f39948c"

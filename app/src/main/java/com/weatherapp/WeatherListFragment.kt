@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.weatherapp.R.attr.layoutManager
 import com.weatherapp.database.WeatherObject
 import com.weatherapp.database.WeatherOpenHelper
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_list.*
 
 
@@ -34,6 +35,7 @@ class WeatherListFragment : Fragment(R.layout.fragment_list) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
+
     }
 
     override fun onCreateView(inflater: LayoutInflater,
