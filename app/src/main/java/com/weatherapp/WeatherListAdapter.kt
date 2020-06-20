@@ -19,7 +19,7 @@ class WeatherListAdapter(private val context: Context, private var cursor: Curso
         val cityNameTextView = itemView.findViewById<TextView>(R.id.city)
         val tempTextView = itemView.findViewById<TextView>(R.id.temperature)
         val icTextView = itemView.findViewById<TextView>(R.id.icon)
-        val deleteButton = itemView.findViewById<ImageButton>(R.id.delete_button)
+//        val deleteButton = itemView.findViewById<ImageButton>(R.id.delete_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
