@@ -93,10 +93,12 @@ class WeatherFragment : Fragment(R.layout.fragment_weather) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
     companion object {
         var BaseUrl = "https://api.openweathermap.org/"
         var AppId = "2e65127e909e178d0af311a81f39948c"

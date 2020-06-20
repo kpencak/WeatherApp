@@ -67,18 +67,13 @@ class WeatherListFragment : Fragment(R.layout.fragment_list) {
                 override fun onSwiped(viewHolder :RecyclerView.ViewHolder, direction:Int) {
                     var id = viewHolder.itemView.tag as Int
                     dbHandler.deleteWeather(id)
-                    try {
-                        mAdapter?.swapCursor(getAllWeather())
-                    } catch (e: IllegalStateException) {
-                        Log.e("ERROR", "Ille ngalStateException")
-                    }
+                    mAdapter?.swapCursor(getAllWeather())
+                    onResume()
                 }
             }).attachToRecyclerView(recycleViewList)
         } catch (e: SQLiteException) {
             Toast.makeText(activity, "Database unavailable", Toast.LENGTH_LONG).show()
         }
-
-
     }
 
     override fun onResume() {
@@ -88,11 +83,11 @@ class WeatherListFragment : Fragment(R.layout.fragment_list) {
         recycleViewList.adapter = context?.let { WeatherListAdapter(it, newCursor) }
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-////        cursor.close()
-//        db.close()
-//    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        cursor.close()
+        db.close()
+    }
 
     companion object {
         fun newInstance(): WeatherFragment = WeatherFragment()

@@ -42,7 +42,7 @@ class WeatherOpenHelper (context: Context?, factory: SQLiteDatabase.CursorFactor
     fun deleteWeather(id: Int) {
         val db = this.writableDatabase
         db.delete(TABLE_NAME, "$COLUMN_ID=\"$id\"", null) > 0
-        db.close()
+//        db.close()
     }
 
 
