@@ -15,7 +15,7 @@ class WeatherOpenHelper (context: Context?, factory: SQLiteDatabase.CursorFactor
     override fun onCreate(db: SQLiteDatabase) {
         val CREATE_WEATHER_TABLE = ("CREATE TABLE " +
                 TABLE_NAME + "(" +
-                COLUMN_ID + " INTEGER PRIMARY KEY," +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTO_INCREMENT," +
                 COLUMN_CITY + " VARCHAR(255)," +
                 COLUMN_TEMP + " VARCHAR(255)," +
                 COLUMN_ICON + " VARCHAR(255)" +
@@ -39,11 +39,13 @@ class WeatherOpenHelper (context: Context?, factory: SQLiteDatabase.CursorFactor
         db.close()
     }
 
-    fun deleteWeather(cityName: String) {
+    fun deleteWeather(id: Int) {
         val db = this.writableDatabase
-        db.delete(TABLE_NAME, "$COLUMN_CITY=$cityName", null) > 0
+        db.delete(TABLE_NAME, "$COLUMN_ID=\"$id\"", null) > 0
         db.close()
     }
+
+
 
     companion object {
         private val DATABASE_VERSION = 1
