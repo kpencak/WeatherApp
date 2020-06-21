@@ -2,28 +2,35 @@ package com.weatherapp
 
 
 import android.os.Bundle
+
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.TextView
+
 import com.weatherapp.API.ServiceBuilder
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_weather.*
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-/**
- * A simple [Fragment] subclass.
- *
- */
 class WeatherFragment : Fragment(R.layout.fragment_weather) {
     lateinit var weatherResponse: WeatherResponse
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("Temperature", temperature.text.toString())
+        outState.putString("Humidity", humidity.text.toString())
+        outState.putString("Icon", icon.text.toString())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

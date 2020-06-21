@@ -2,12 +2,8 @@ package com.weatherapp.database
 
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
-import android.widget.Toast
-import com.weatherapp.WeatherListAdapter
 
 class WeatherOpenHelper (context: Context?, factory: SQLiteDatabase.CursorFactory?) :
         SQLiteOpenHelper(context, DATABASE_NAME, factory, DATABASE_VERSION) {
@@ -42,10 +38,7 @@ class WeatherOpenHelper (context: Context?, factory: SQLiteDatabase.CursorFactor
     fun deleteWeather(id: Int) {
         val db = this.writableDatabase
         db.delete(TABLE_NAME, "$COLUMN_ID=\"$id\"", null) > 0
-//        db.close()
     }
-
-
 
     companion object {
         private val DATABASE_VERSION = 1

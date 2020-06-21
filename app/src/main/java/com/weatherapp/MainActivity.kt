@@ -17,16 +17,15 @@ import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.jakewharton.rxbinding2.view.clickable
-import com.jakewharton.rxbinding2.view.clicks
 
 import com.weatherapp.database.WeatherObject
 import com.weatherapp.database.WeatherOpenHelper
+import java.lang.IllegalStateException
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var locationManager: LocationManager
+    private var locationManager: LocationManager? = null
     private var PERMISSION_ID = 45
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,11 +103,14 @@ class MainActivity : AppCompatActivity() {
                 val cityNameText = fragmentView?.findViewById<EditText>(R.id.city)
 
                 try {
-                    val location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                    val location = locationManager!!.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                     var geocoder = Geocoder(baseContext, Locale.getDefault())
                     var address = geocoder.getFromLocation(location.latitude, location.longitude, 1)
                     cityNameText?.setText(address[0].locality)
                 } catch (e: SecurityException) {
+                    Toast.makeText(this, "Can't get location", Toast.LENGTH_LONG).show()
+                    Log.e("ERROR", e.toString())
+                } catch (e: IllegalStateException) {
                     Toast.makeText(this, "Can't get location", Toast.LENGTH_LONG).show()
                     Log.e("ERROR", e.toString())
                 }
